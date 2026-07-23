@@ -1,0 +1,45 @@
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+#dimension-panel {
+    background-color: var(--accent2);
+    height: fit-content;
+    width: 80vw;
+    display: flex;
+    flex-direction: row;
+    gap: 4px;
+    padding: 4px 6px;
+    box-sizing: border-box;
+}
+
+#grid-container {
+    background-color: var(--accent1);
+    height: 512px;
+    width: 80vw;
+    display: grid;
+    box-sizing: border-box;
+}
+
+#control-panel {
+    background-color: var(--accent2);
+    height: fit-content;
+    width: 80vw;
+    display: flex;
+    flex-direction: row;
+    gap: 4px;
+    padding: 4px 6px;
+    box-sizing: border-box;
+}
+
+.play-pause-button {
+    background-color: rgb(27, 181, 27);
+    /* background-color: orange; */
+}
+
+.reset-button {
+    background-color: orangered;
+}
