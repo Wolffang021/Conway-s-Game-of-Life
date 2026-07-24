@@ -8,7 +8,9 @@ function App() {
   const [grid, setGrid] = useState(() => createGrid(rows, columns))
 
   function createGrid(rows, columns) {
-    return Array(rows).fill(null).map(() => Array(columns).fill(false))
+    let init = Array(rows).fill(null).map(() => Array(columns).fill(false))
+    init[32][32] = true, init[33][33] = true, init[34][31] = true, init[34][32] = true, init[34][33] = true
+    return init
   }
 
   function resetGrid() {
@@ -21,7 +23,7 @@ function App() {
         <div className="title"><span>CONWAY'S GAME OF LIFE</span></div>
       </div>
 
-      <Canvas grid={grid} rows={rows} columns={columns}/>
+      <Canvas grid={grid} setGrid={setGrid}/>
       
       <div id="control-panel">
         <button className="play-pause-button">▶ PLAY / ⏸ PAUSE</button>
