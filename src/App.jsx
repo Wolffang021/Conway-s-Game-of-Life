@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import './App.css'
+import Canvas from './components/Canvas'
 
 function App() {
-  const [rows, setRows] = useState(8)
-  const [columns, setColumns] = useState(8)
+  const rows = 32
+  const columns = 32
   const [grid, setGrid] = useState(() => createGrid(rows, columns))
 
   function createGrid(rows, columns) {
@@ -16,22 +17,15 @@ function App() {
 
   return (
     <main>
-      <div id="dimension-panel">
-        <div className="input-container">
-          <p className="label">ROWS:</p>
-          <input type="number" className="rows-input" value={rows} min="4" max="32" onChange={(e) => {setRows(e.target.value); setGrid}}/>
-        </div>
-        <div className="input-container">
-          <p className="label">COLUMNS:</p>
-          <input type="number" className="column-input" value={columns} min="4" max="32" onChange={(e) => {setColumns(e.target.value); setGrid}}/>
-        </div>
+      <div id="title-panel">
+        <div className="title"><span>CONWAY'S GAME OF LIFE</span></div>
       </div>
 
-      <div id="grid-container"></div>
+      <Canvas />
       
       <div id="control-panel">
-        <button className="play-pause-button"> ▶ PLAY / ⏸ PAUSE</button>
-        <button className="reset-button">↺ RESET</button>
+        <button className="play-pause-button">▶ PLAY / ⏸ PAUSE</button>
+        <button className="reset-button" onClick={resetGrid}>↺ RESET</button>
       </div>
     </main>
   )
