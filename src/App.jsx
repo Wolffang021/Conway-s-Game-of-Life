@@ -3,8 +3,8 @@ import './App.css'
 import Canvas from './components/Canvas'
 
 function App() {
-  const rows = 32
-  const columns = 32
+  const rows = 64
+  const columns = 64
   const [grid, setGrid] = useState(() => createGrid(rows, columns))
 
   function createGrid(rows, columns) {
@@ -21,7 +21,7 @@ function App() {
         <div className="title"><span>CONWAY'S GAME OF LIFE</span></div>
       </div>
 
-      <Canvas />
+      <Canvas grid={grid} rows={rows} columns={columns}/>
       
       <div id="control-panel">
         <button className="play-pause-button">▶ PLAY / ⏸ PAUSE</button>
