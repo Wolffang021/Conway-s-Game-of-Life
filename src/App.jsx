@@ -20,14 +20,35 @@ function App() {
 
   function playPause() {
     let newGrid = []
+
     for (let i = 0; i < rows; i++) {
       newGrid[i] = []
+
       for (let j = 0; j < columns; j++) {
-        newGrid[i][j] = ((x, y, value) => {
-          return !value
-        })(i, j, grid[i][j])
+        newGrid[i][j] = (() => {
+          let neighbours = 0
+
+          for (let x = i - 1; x <= i + 1; x++) {
+            if (x < 0 || x === rows)
+              continue
+
+            for (let y = j - 1; y <= j + 1; y++) {
+              if (y < 0 || y === columns)
+                continue
+
+              if (x === i && y === j)
+                continue
+
+              if (grid[x][y])
+                neighbours++
+            }
+          }
+
+          return grid[i][j] ? neighbours >= 2 && neighbours <= 3 : neighbours === 3
+        })()
       }
     }
+
     setGrid(newGrid)
   }
 
