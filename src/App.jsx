@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import './App.css'
 import Canvas from './components/Canvas'
 
@@ -8,17 +8,26 @@ function App() {
   const [grid, setGrid] = useState(() => createGrid(rows, columns))
   const [playing, setPlaying] = useState(false)
 
+  useEffect(() => {
+    if (!playing)
+      return
+
+    const interval = setInterval(() => {
+      setGrid(currentGrid => createNextPassGrid(currentGrid))
+    }, 100)
+
+    return () => {
+      clearInterval(interval)
+    }
+  }, [playing])
+
   function createGrid(rows, columns) {
     let init = Array(rows).fill(null).map(() => Array(columns).fill(false))
     init[32][32] = true, init[33][33] = true, init[34][31] = true, init[34][32] = true, init[34][33] = true
     return init
   }
 
-  function resetGrid() {
-    setGrid(createGrid(rows, columns))
-  }
-
-  function playPause() {
+  function createNextPassGrid(currentGrid = grid) {
     let newGrid = []
 
     for (let i = 0; i < rows; i++) {
@@ -39,17 +48,17 @@ function App() {
               if (x === i && y === j)
                 continue
 
-              if (grid[x][y])
+              if (currentGrid[x][y])
                 neighbours++
             }
           }
 
-          return grid[i][j] ? neighbours >= 2 && neighbours <= 3 : neighbours === 3
+          return currentGrid[i][j] ? neighbours >= 2 && neighbours <= 3 : neighbours === 3
         })()
       }
     }
 
-    setGrid(newGrid)
+    return newGrid
   }
 
   return (
@@ -62,8 +71,9 @@ function App() {
       
       <div id="control-panel">
         <div className="button-container">
-          <button className="play-pause-button" onClick={playPause}>▶ PLAY / ⏸ PAUSE</button>
-          <button className="reset-button" onClick={resetGrid}>↺ RESET</button>
+          <button className="play-pause-button" onClick={() => setPlaying(!playing)}>▶ PLAY / ⏸ PAUSE</button>
+          <button className="next-pass-button" onClick={() => setGrid(createNextPassGrid())}>⏭ NEXT</button>
+          <button className="reset-button" onClick={() => setGrid(createGrid(rows, columns))}>↺ RESET</button>
         </div>
         <p className="warning">* Display not supported for mobile devices</p>
       </div>

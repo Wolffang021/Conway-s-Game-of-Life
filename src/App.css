@@ -104,7 +104,10 @@ button:hover {
 
 .play-pause-button {
     background-color: rgb(27, 181, 27);
-    /* background-color: orange; */
+}
+
+.next-pass-button {
+    background-color: orange;
 }
 
 .reset-button {
