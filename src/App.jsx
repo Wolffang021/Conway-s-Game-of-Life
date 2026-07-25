@@ -20,14 +20,17 @@ function App() {
   return (
     <main>
       <div id="title-panel">
-        <div className="title"><span>CONWAY'S GAME OF LIFE</span></div>
+        <div className="title"><span>CONWAY'S GAME OF LIFE <a className="wiki-link" href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life">wiki↗</a></span></div>
       </div>
 
       <Canvas grid={grid} setGrid={setGrid}/>
       
       <div id="control-panel">
-        <button className="play-pause-button">▶ PLAY / ⏸ PAUSE</button>
-        <button className="reset-button" onClick={resetGrid}>↺ RESET</button>
+        <div className="button-container">
+          <button className="play-pause-button">▶ PLAY / ⏸ PAUSE</button>
+          <button className="reset-button" onClick={resetGrid}>↺ RESET</button>
+        </div>
+        <p className="warning">* Display not supported for mobile devices</p>
       </div>
     </main>
   )

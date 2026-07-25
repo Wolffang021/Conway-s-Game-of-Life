@@ -15,10 +15,10 @@ function Canvas({ grid, setGrid }) {
       for (let j = 0; j < grid[i].length; j++) {
         ctx.fillStyle = grid[i][j] ? "rgb(75, 200, 65)" : "rgb(120, 120, 120)"
         ctx.strokeStyle = "black"
-        ctx.lineWidth = 0.2
+        ctx.lineWidth = 0.1
 
-        ctx.fillRect(8 * j, 8 * i, cellWidth, cellHeight)
-        ctx.strokeRect(8 * j, 8 * i, cellWidth, cellHeight)
+        ctx.fillRect(cellWidth * j, cellHeight * i, cellWidth, cellHeight)
+        ctx.strokeRect(cellWidth * j, cellHeight * i, cellWidth, cellHeight)
       }
     }
   }, [grid])
@@ -55,7 +55,7 @@ function Canvas({ grid, setGrid }) {
 
   return (
     <div id="grid-container">
-      <canvas id="grid" ref={canvasRef} width="512" height="512" onClick={(e) => {handleClick(e)}} />
+      <canvas id="grid" ref={canvasRef} width="512" height="512" onClick={handleClick} />
     </div>
   )
 }

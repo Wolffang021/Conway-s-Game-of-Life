@@ -34,7 +34,7 @@ button:hover {
 }
 
 .title {
-    color: rgb(206, 223, 238);
+    color: var(--title);
     font-size: xx-large;
     font-weight: 600;
     display: flex;
@@ -43,6 +43,16 @@ button:hover {
     padding: 8px 10px;
     border-radius: 6px;
     box-sizing: border-box;
+}
+
+.wiki-link {
+    color: rgb(118, 133, 146);
+    font-size: xx-small;
+    text-decoration: none;
+}
+
+.wiki-link:hover {
+    color: var(--title);
 }
 
 #grid-container {
@@ -67,14 +77,29 @@ button:hover {
 #control-panel {
     background-color: var(--accent2);
     height: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
     width: 70vw;
+    padding: 8px 10px;
+    border-radius: 6px;
+    box-sizing: border-box;
+}
+
+.button-container {
     display: flex;
     flex-direction: row;
     justify-content: center;
     gap: 16px;
-    padding: 8px 10px;
-    border-radius: 6px;
-    box-sizing: border-box;
+}
+
+.warning {
+    color: rgb(240, 110, 15);
+    font-size: small;
+    font-weight: 500;
+    margin: 0;
 }
 
 .play-pause-button {
